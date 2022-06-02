@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface AuthorRepository : MongoRepository<Author, ObjectId> {
+    fun findByEmail(email: String): Author?
 }

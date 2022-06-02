@@ -4,4 +4,5 @@ import com.ohashi.contentmanagement.domain.entities.Author
 
 interface AuthorService {
     fun getAllAuthor(): List<Author>
+    fun create(author: Author): Author
 }

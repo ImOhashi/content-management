@@ -79,6 +79,9 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+	testImplementation("com.ninja-squad:springmockk:3.1.1")
+	testImplementation("com.willowtreeapps.assertk:assertk-jvm:0.25")
 }
 
 tasks.withType<KotlinCompile> {

@@ -1,5 +1,6 @@
 package com.ohashi.contentmanagement.application.web.controllers
 
+import com.ohashi.contentmanagement.application.payloads.AuthorResponse
 import com.ohashi.contentmanagement.domain.entities.Author
 import com.ohashi.contentmanagement.domain.services.AuthorService
 import org.slf4j.Logger
@@ -19,17 +20,21 @@ class AuthorController(
     private val authorService: AuthorService
 ) {
     @GetMapping
-    fun getAllAuthors(): ResponseEntity<List<Author>> = ResponseEntity.ok(this.authorService.getAllAuthor())
+    fun getAllAuthors(): ResponseEntity<List<AuthorResponse>> =
+        ResponseEntity.ok(this.authorService.getAllAuthor().map { AuthorResponse(it) })
 
     @PostMapping
-    fun createAuthor(@RequestBody @Valid author: Author, uriComponentsBuilder: UriComponentsBuilder): ResponseEntity<Author> {
+    fun createAuthor(
+        @RequestBody @Valid author: Author,
+        uriComponentsBuilder: UriComponentsBuilder
+    ): ResponseEntity<AuthorResponse> {
         logger.info("Requested create author: ${author.toString()}")
 
         val createdAuthor = this.authorService.create(author)
 
         val uri = uriComponentsBuilder.path("/author/").buildAndExpand(createdAuthor.fullname).toUri()
 
-        return ResponseEntity.created(uri).body(createdAuthor)
+        return ResponseEntity.created(uri).body(AuthorResponse(createdAuthor))
     }
 
     companion object {

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor
 import lombok.Data
 import lombok.Generated
 import lombok.NoArgsConstructor
+import lombok.ToString
 import org.bson.types.ObjectId
 import org.springframework.data.mongodb.core.mapping.Document
 import javax.validation.constraints.NotEmpty
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotNull
 
 @Data
 @Generated
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Document("Author")
